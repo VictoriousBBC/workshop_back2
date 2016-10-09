@@ -1,5 +1,7 @@
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show, :edit, :update, :destroy]
+  before_action :set_show, only: [:show, :edit, :update, :destroy, :book]
+
+  skip_before_action :verify_authenticity_token, only: [:book]
 
   # GET /shows
   # GET /shows.json
@@ -61,6 +63,21 @@ class ShowsController < ApplicationController
     end
   end
 
+  def book
+    #On crée un nouvel objet booking à partir des paramètres reçus
+    @booking = Booking.new(booking_params)
+    #On précise que cet objet Booking déoend du Show concerné
+    @booking.show = @show
+
+    respond_to do |format|
+      if @booking.save
+        format.json
+      else
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_show
@@ -71,4 +88,5 @@ class ShowsController < ApplicationController
     def show_params
       params.require(:show).permit(:name, :venue, :description, :capacity, :price, :image, :date)
     end
+
 end
