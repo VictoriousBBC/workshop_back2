@@ -1,3 +1,5 @@
+Show.destroy_all
+
 Show.create(
 	name: "Mon premier Show",
 	location: "Salle Pleyel",

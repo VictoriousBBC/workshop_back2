@@ -1,5 +1,5 @@
-class RemovelocationFromShows < ActiveRecord::Migration[5.0]
+class RemoveVenueFromShows < ActiveRecord::Migration[5.0]
   def change
-  	remove_column :shows, :location
+  	remove_column :shows, :venue
   end
 end
