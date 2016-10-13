@@ -1,6 +1,6 @@
 Show.create(
 	name: "Mon premier Show",
-	loation: "Salle Pleyel",
+	location: "Salle Pleyel",
 	description: "Concert blabalbla",
 	capacity: 500,
 	price: 30,
